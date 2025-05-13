@@ -5,9 +5,7 @@ import { useUser, useClerk } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import {
-  DownloadIcon,
   Users,
-  CreditCard,
   Activity,
   CheckCircle,
   Clock,
@@ -17,31 +15,15 @@ import {
   Mail,
   RefreshCw,
   InfoIcon,
-  UserCheck,
-  Skull,
-  HelpCircle
 } from "lucide-react";
-import Link from "next/link";
-import { CalendarDateRangePicker } from "@/components/date-range-picker";
 import { Overview } from "@/components/overview";
 import { RecentCheckins } from "@/components/recent-checkins";
-import { PageHeader } from "@/components/page-header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { UserNav } from "@/components/user-nav";
+import { useRouter, usePathname } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import DeathNoteLogo from "@/components/icons/death-note-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { toast } from "sonner";
@@ -79,7 +61,6 @@ export default function DashboardPage() {
   const email = user?.primaryEmailAddress?.emailAddress || "";
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("overview");
   
   // Settings state
@@ -314,7 +295,7 @@ export default function DashboardPage() {
           <p className="text-muted-foreground">
             Monitor and manage your final note to the world.
           </p>
-              </div>
+        </div>
         <div className="ml-auto flex items-center space-x-2">
           <Button 
             variant="outline" 
@@ -335,8 +316,8 @@ export default function DashboardPage() {
             </div>
           </Button>
           <ThemeToggle />
-              </div>
-            </div>
+        </div>
+      </div>
 
       <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-4">
         <TabsList className="h-10 bg-muted/60 p-1 flex w-full rounded-md">
@@ -539,8 +520,8 @@ export default function DashboardPage() {
                                 <div className="text-sm text-muted-foreground flex items-center mt-1">
                                   <Mail className="h-4 w-4 mr-1" />
                                   {contact.email}
-              </div>
-            </div>
+                                </div>
+                              </div>
 
                               <div className="flex gap-2">
                                 {contact.status === "Pending" && (
@@ -573,7 +554,7 @@ export default function DashboardPage() {
                           <Card key={contact.id} className="hover:shadow-md transition-shadow">
                             <CardContent className="p-4">
                               <div className="flex justify-between items-center">
-              <div>
+                                <div>
                                   <div className="flex items-center gap-3">
                                     <span className="font-medium">{contact.name}</span>
                                     <Badge variant="default" className="bg-green-500 hover:bg-green-500">Accepted</Badge>
@@ -591,7 +572,7 @@ export default function DashboardPage() {
                                 >
                                   <X className="h-4 w-4" />
                                 </Button>
-              </div>
+                              </div>
                             </CardContent>
                           </Card>
                         ))
@@ -610,7 +591,7 @@ export default function DashboardPage() {
                           <Card key={contact.id} className="hover:shadow-md transition-shadow">
                             <CardContent className="p-4">
                               <div className="flex justify-between items-center">
-              <div>
+                                <div>
                                   <div className="flex items-center gap-3">
                                     <span className="font-medium">{contact.name}</span>
                                     <Badge variant="outline" className="bg-yellow-500 hover:bg-yellow-500">Pending</Badge>
@@ -909,8 +890,8 @@ export default function DashboardPage() {
                           Upgrade to premium for extended verification periods.
                         </p>
                       )}
-              </div>
-            </div>
+                    </div>
+                  </div>
 
                   <div className="grid grid-cols-4 items-center gap-4">
                     <label htmlFor="notifications" className="text-sm font-medium">
@@ -921,7 +902,7 @@ export default function DashboardPage() {
                         {premiumFeatures.notifications ? "Enabled" : "Premium Feature"}
                       </Badge>
                     </div>
-          </div>
+                  </div>
 
                   <div className="grid grid-cols-4 items-center gap-4">
                     <label htmlFor="contacts" className="text-sm font-medium">
@@ -938,8 +919,8 @@ export default function DashboardPage() {
                       )}
                     </div>
                   </div>
-            </div>
-          </div>
+                </div>
+              </div>
 
               <div className="space-y-2">
                 <h3 className="text-lg font-medium">Account Actions</h3>
@@ -954,16 +935,16 @@ export default function DashboardPage() {
                         Upgrade Account
                       </Button>
                     </div>
-            </div>
+                  </div>
                   <div className="grid grid-cols-4 items-center gap-4">
                     <label className="text-sm font-medium">
                       Account
                     </label>
                     <div className="col-span-3">
                       {/* Sign Out button removed from here */}
-          </div>
-        </div>
-      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </CardContent>
             <CardFooter>

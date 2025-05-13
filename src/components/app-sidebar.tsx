@@ -4,6 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Calendar, Edit, Home, Settings, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useRouter, usePathname } from "next/navigation";
 
 import {
   Sidebar,
@@ -48,6 +55,8 @@ const menuItems = [
 
 export function AppSidebar() {
   const { user } = useUser();
+  const router = useRouter();
+  const pathname = usePathname();
   const firstName = user?.firstName || "";
   const lastName = user?.lastName || "";
   const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;

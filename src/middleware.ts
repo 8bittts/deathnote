@@ -7,13 +7,7 @@
  * @module middleware
  */
 
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-
-/**
- * Define public routes that don't require authentication
- * These routes can be accessed by both authenticated and unauthenticated users
- */
-const isPublicRoute = createRouteMatcher(['/', '/privacy', '/terms', '/contact']);
+import { clerkMiddleware } from '@clerk/nextjs/server';
 
 /**
  * Clerk middleware to handle authentication and redirects

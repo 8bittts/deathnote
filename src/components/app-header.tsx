@@ -18,11 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Menubar,
-  MenubarContent,
-  MenubarItem,
   MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import {
