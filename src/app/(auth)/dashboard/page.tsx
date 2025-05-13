@@ -960,22 +960,29 @@ export default function DashboardPage() {
                       Account
                     </label>
                     <div className="col-span-3">
-                      <Button variant="outline" className="text-red-500 hover:text-red-700" onClick={() => signOut()}>
-                        Sign Out
-                      </Button>
+                      {/* Sign Out button removed from here */}
           </div>
         </div>
       </div>
               </div>
             </CardContent>
             <CardFooter>
-              <Button 
-                onClick={updateUserProfile} 
-                disabled={isUpdating}
-                className="w-full md:w-auto"
-              >
-                {isUpdating ? "Saving..." : "Save Changes"}
-              </Button>
+              <div className="flex space-x-2 w-full">
+                <Button 
+                  onClick={updateUserProfile} 
+                  disabled={isUpdating}
+                  className="w-full md:w-auto"
+                >
+                  {isUpdating ? "Saving..." : "Save Changes"}
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="text-red-500 hover:text-red-700" 
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </Button>
+              </div>
             </CardFooter>
           </Card>
         </TabsContent>
