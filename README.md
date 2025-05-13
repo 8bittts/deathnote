@@ -12,6 +12,9 @@ Death Note is a secure digital legacy management platform that enables users to 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![React](https://img.shields.io/badge/React-19.0.0-blue)
 
+<img width="2334" alt="8-2025-05-13-18 18 54" src="https://github.com/user-attachments/assets/4ffa277b-29cc-4f13-a30d-38258d295994" />
+
+
 ## 📑 Table of Contents
 
 - [Features](#-features)
