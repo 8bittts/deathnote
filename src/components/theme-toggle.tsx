@@ -1,3 +1,15 @@
+/**
+ * Theme Toggle Component
+ * 
+ * This component provides a dropdown menu for switching between different theme modes:
+ * Light, Dark, and Shinigami (custom Death Note-inspired theme).
+ * 
+ * It displays different icons based on the current theme and provides visual feedback
+ * when the Shinigami theme is active through custom styling and effects.
+ * 
+ * @module components/theme-toggle
+ */
+
 "use client"
 
 import * as React from "react"
@@ -12,6 +24,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+/**
+ * ThemeToggle Component
+ * 
+ * A dropdown menu that allows users to switch between light, dark, and Shinigami themes.
+ * Shows a different icon based on the current theme and adds special effects for the Shinigami theme.
+ * 
+ * @returns A React component that renders a theme selection dropdown
+ */
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
 
@@ -22,7 +42,7 @@ export function ThemeToggle() {
           variant="outline" 
           size="icon" 
           className={`h-9 w-9 border border-border p-0 relative transition-all duration-300 ${
-            theme === 'shinigami' ? 'border-red-800/50 shadow-[0_0_10px_rgba(150,0,0,0.3)]' : ''
+            theme === 'shinigami' ? 'border-red-800 shadow-[0_0_15px_rgba(200,0,0,0.4)]' : ''
           }`}
         >
           <Sun className="h-[1.1rem] w-[1.1rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 shinigami:-rotate-90 shinigami:scale-0" />
@@ -34,9 +54,12 @@ export function ThemeToggle() {
           />
           <span className="sr-only">Toggle theme</span>
           
-          {/* Small red glow for Shinigami mode */}
+          {/* Enhanced red glow for Shinigami mode */}
           {theme === 'shinigami' && (
-            <span className="absolute inset-0 rounded-md bg-red-600/10 blur-[2px] animate-pulse" />
+            <>
+              <span className="absolute inset-0 rounded-md bg-red-600/15 blur-[3px] animate-pulse" />
+              <span className="absolute -inset-1 rounded-md bg-red-600/10 blur-[6px]" />
+            </>
           )}
         </Button>
       </DropdownMenuTrigger>

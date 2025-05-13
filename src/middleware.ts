@@ -1,9 +1,29 @@
+/**
+ * Authentication Middleware
+ * 
+ * This middleware handles user authentication using Clerk.
+ * It ensures protected routes require authentication and handles redirects.
+ * 
+ * @module middleware
+ */
+
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-// Define public routes that don't require authentication
+/**
+ * Define public routes that don't require authentication
+ * These routes can be accessed by both authenticated and unauthenticated users
+ */
 const isPublicRoute = createRouteMatcher(['/', '/privacy', '/terms', '/contact']);
 
-// This middleware handles authentication and redirects
+/**
+ * Clerk middleware to handle authentication and redirects
+ * 
+ * This middleware:
+ * 1. Checks if a user is authenticated
+ * 2. Redirects authenticated users from the homepage to the dashboard
+ * 3. Allows public routes to be accessed without authentication
+ * 4. Protects all other routes by requiring authentication
+ */
 export default clerkMiddleware(async (auth, req) => {
   // Get authentication state
   const { userId } = await auth();
@@ -16,6 +36,13 @@ export default clerkMiddleware(async (auth, req) => {
   }
 });
 
+/**
+ * Middleware matcher configuration
+ * 
+ * Defines which routes the middleware should run on:
+ * - Excludes Next.js internal routes and static files
+ * - Includes all API routes
+ */
 export const config = {
   matcher: [
     // Skip Next.js internals and static files

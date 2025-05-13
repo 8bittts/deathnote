@@ -236,8 +236,15 @@ yarn start
 |----------|-------------|----------|
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public API key | Yes |
 | `CLERK_SECRET_KEY` | Clerk secret API key | Yes |
+| `NEXT_PUBLIC_CLERK_SIGN_IN_URL` | Clerk sign-in URL path | Yes |
+| `NEXT_PUBLIC_CLERK_SIGN_UP_URL` | Clerk sign-up URL path | Yes |
+| `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL` | Redirect URL after sign-in | Yes |
 | `NEXT_PUBLIC_VERIFICATION_PERIOD_DAYS` | Default verification period (days) | No (default: 7) |
 | `NEXT_PUBLIC_APP_URL` | Application URL for callbacks | Yes |
+| `NEXT_PUBLIC_DEEPSEEK_API_KEY` | API key for DeepSeek AI service | No |
+| `NEXT_PUBLIC_FIRECRAWL_API_KEY` | API key for FireCrawl web extraction service | No |
+
+See `.env.example` for a template of required environment variables.
 
 ## 🔑 Authentication
 
@@ -269,10 +276,54 @@ The application uses a combination of custom components and Shadcn UI components
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/api/contacts` | GET, POST | Manage user contacts |
-| `/api/notes` | GET, POST, PUT | Manage legacy notes |
-| `/api/verification` | POST | Record user verification |
-| `/api/verification/history` | GET | Get verification history |
+| `/api/deepseek` | POST | AI-powered message generation service |
+| `/api/firecrawl` | POST | Web content extraction for inspiration |
+
+### `/api/deepseek`
+
+**Purpose**: Generate AI-assisted content for legacy messages.
+
+**Request Format**:
+```json
+{
+  "prompt": "Your message prompt or context"
+}
+```
+
+**Response Format**:
+```json
+{
+  "content": "Generated message content"
+}
+```
+
+**Status Codes**:
+- `200 OK`: Content successfully generated
+- `400 Bad Request`: Missing or invalid parameters
+- `500 Internal Server Error`: Server-side error
+
+### `/api/firecrawl`
+
+**Purpose**: Extract content from web URLs for inspiration or reference.
+
+**Request Format**:
+```json
+{
+  "url": "https://example.com/some-article"
+}
+```
+
+**Response Format**:
+```json
+{
+  "content": "Extracted content from the URL"
+}
+```
+
+**Status Codes**:
+- `200 OK`: Content successfully extracted
+- `400 Bad Request`: Missing or invalid URL
+- `500 Internal Server Error`: Server-side error
 
 ## 🤝 Contributing
 
