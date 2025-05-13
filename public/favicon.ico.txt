@@ -1,0 +1,15 @@
+To create the favicon.ico file:
+
+1. Take the SVG from icon.svg
+2. Use an online ICO converter:
+   - Visit https://convertio.co/svg-ico/ or https://favicon.io/
+   - Upload the icon.svg file
+   - Download and save as favicon.ico in the public directory
+   - Replace both this text file and any existing favicon.ico
+
+An ICO file typically contains multiple sizes, commonly 16x16, 32x32, and 48x48 pixels.
+
+The Death Note logo should include:
+- A skull icon with a light border
+- A small green question mark in the top left corner
+- A small red X in the top right corner

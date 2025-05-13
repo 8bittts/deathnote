@@ -1,0 +1,186 @@
+/* Death Note Logo Animation Styles */
+
+/* Main skull fire animation */
+.skull-fire {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  height: 130%;
+  background: linear-gradient(to top, #ff5722, #ff9800, #ffeb3b);
+  border-radius: 25% 25% 45% 45% / 40% 40% 60% 60%;
+  transform-origin: center bottom;
+  animation: flame 1.2s infinite alternate;
+  box-shadow: 
+    0 0 10px 2px rgba(255, 152, 0, 0.6),
+    0 0 20px 5px rgba(255, 87, 34, 0.3);
+  z-index: 20;
+  clip-path: polygon(15% 100%, 85% 100%, 100% 40%, 80% 10%, 60% 0%, 40% 0%, 20% 10%, 0% 40%);
+}
+
+/* Ember particles */
+.embers {
+  position: relative;
+}
+
+.ember {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #ffeb3b;
+  box-shadow: 0 0 8px 3px rgba(255, 235, 59, 0.7);
+  opacity: 0;
+  animation: float 3s ease-in infinite;
+}
+
+/* Set random positions for each ember with animation variations */
+.ember-1 {
+  --x-pos: calc(20% + (40% * var(--random-1, 0.2)));
+  left: var(--x-pos);
+  top: calc(30% + (40% * var(--random-5, 0.7)));
+  animation-delay: 0.2s;
+  animation-duration: 2.7s;
+  --float-x: calc(10px * var(--random-3, 0.3));
+}
+
+.ember-2 {
+  --x-pos: calc(15% + (50% * var(--random-2, 0.6)));
+  left: var(--x-pos);
+  top: calc(20% + (60% * var(--random-6, 0.2)));
+  animation-delay: 0.8s;
+  animation-duration: 3.3s;
+  --float-x: calc(-8px * var(--random-4, 0.7));
+}
+
+.ember-3 {
+  --x-pos: calc(25% + (30% * var(--random-3, 0.8)));
+  left: var(--x-pos);
+  top: calc(40% + (30% * var(--random-7, 0.5)));
+  animation-delay: 0.4s;
+  animation-duration: 2.5s;
+  --float-x: calc(7px * var(--random-5, 0.1));
+}
+
+.ember-4 {
+  --x-pos: calc(10% + (60% * var(--random-4, 0.4)));
+  left: var(--x-pos);
+  top: calc(25% + (45% * var(--random-8, 0.3)));
+  animation-delay: 1.5s;
+  animation-duration: 2.8s;
+  --float-x: calc(-12px * var(--random-6, 0.9));
+}
+
+.ember-5 {
+  --x-pos: calc(30% + (35% * var(--random-5, 0.1)));
+  left: var(--x-pos);
+  top: calc(35% + (35% * var(--random-1, 0.4)));
+  animation-delay: 0.6s;
+  animation-duration: 3.5s;
+  --float-x: calc(14px * var(--random-7, 0.5));
+}
+
+.ember-6 {
+  --x-pos: calc(25% + (40% * var(--random-6, 0.7)));
+  left: var(--x-pos);
+  top: calc(15% + (55% * var(--random-2, 0.8)));
+  animation-delay: 1.2s;
+  animation-duration: 2.9s;
+  --float-x: calc(-9px * var(--random-8, 0.6));
+}
+
+.ember-7 {
+  --x-pos: calc(5% + (55% * var(--random-7, 0.3)));
+  left: var(--x-pos);
+  top: calc(10% + (70% * var(--random-3, 0.1)));
+  animation-delay: 0.1s;
+  animation-duration: 3.1s;
+  --float-x: calc(11px * var(--random-1, 0.2));
+}
+
+.ember-8 {
+  --x-pos: calc(35% + (45% * var(--random-8, 0.9)));
+  left: var(--x-pos);
+  top: calc(5% + (65% * var(--random-4, 0.6)));
+  animation-delay: 0.9s;
+  animation-duration: 2.6s;
+  --float-x: calc(-15px * var(--random-2, 0.4));
+}
+
+/* Fire random helpers - these will be set via JavaScript to randomize positions */
+.death-note-logo {
+  --random-1: 0.3;
+  --random-2: 0.7;
+  --random-3: 0.2;
+  --random-4: 0.8;
+  --random-5: 0.5;
+  --random-6: 0.1;
+  --random-7: 0.9;
+  --random-8: 0.4;
+}
+
+/* Fire flame animation */
+@keyframes flame {
+  0% {
+    transform: scaleY(0.95) scaleX(1);
+    filter: brightness(0.95);
+    border-radius: 25% 25% 45% 45% / 40% 40% 60% 60%;
+  }
+  25% {
+    transform: scaleY(1.05) scaleX(0.95);
+    filter: brightness(1.05);
+    border-radius: 28% 22% 42% 48% / 42% 38% 62% 58%;
+  }
+  50% {
+    transform: scaleY(0.97) scaleX(1.03);
+    filter: brightness(1);
+    border-radius: 22% 28% 48% 42% / 38% 42% 58% 62%;
+  }
+  75% {
+    transform: scaleY(1.03) scaleX(0.97);
+    filter: brightness(1.1);
+    border-radius: 26% 24% 44% 46% / 41% 39% 61% 59%;
+  }
+  100% {
+    transform: scaleY(0.98) scaleX(1.02);
+    filter: brightness(0.98);
+    border-radius: 25% 25% 45% 45% / 40% 40% 60% 60%;
+  }
+}
+
+/* Floating ember animation */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(-5px) scale(1);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-50px) translateX(var(--float-x, 5px)) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Add a pulsating glow effect to the logo on hover */
+.death-note-logo:hover {
+  filter: drop-shadow(0 0 10px rgba(255, 152, 0, 0.7));
+  animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(255, 152, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 109, 0, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(255, 87, 34, 0.7));
+  }
+} 
