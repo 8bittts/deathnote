@@ -1,9 +1,22 @@
+/**
+ * SignInPage Component
+ * 
+ * The login page for the application using Clerk Authentication.
+ * Provides options for email sign-in and social login.
+ * 
+ * @module app/(auth)/sign-in
+ */
+
 import { SignIn } from "@clerk/nextjs";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 
+/**
+ * SignInPage Component
+ * 
+ * @returns The sign-in page with Clerk auth UI and GitHub login option
+ */
 export default function SignInPage() {
   return (
     <div className="container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -27,7 +40,7 @@ export default function SignInPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "This app has saved me countless hours of worry and helped me deliver meaningful messages to my loved ones when it truly matters."
+              &quot;This app has saved me countless hours of worry and helped me deliver meaningful messages to my loved ones when it truly matters.&quot;
             </p>
             <footer className="text-sm">Sofia Davis</footer>
           </blockquote>

@@ -50,12 +50,6 @@ interface TiptapEditorProps {
   onChange: (content: string) => void;
   
   /**
-   * Placeholder text to show when editor is empty
-   * @default 'Start writing your note...'
-   */
-  placeholder?: string;
-  
-  /**
    * Additional CSS class names to apply to the editor container
    * @default ''
    */
@@ -71,7 +65,6 @@ interface TiptapEditorProps {
 export function TiptapEditor({ 
   initialContent = '<h2>My Final Note</h2><p>Dear family and friends,</p><p>If you\'re reading this, it means I\'m no longer with you. I wanted to take this opportunity to share some final thoughts and wishes.</p>', 
   onChange, 
-  placeholder = 'Start writing your note...',
   className = ''
 }: TiptapEditorProps) {
   const [linkUrl, setLinkUrl] = useState('');

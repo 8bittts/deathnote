@@ -1,11 +1,24 @@
+/**
+ * Home Page Component
+ * 
+ * The landing page for non-authenticated users with information about the application.
+ * Authenticated users are automatically redirected to their dashboard.
+ * 
+ * @module app/page
+ */
+
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SignInButton, SignUpButton, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
+/**
+ * Home Page Component
+ * 
+ * @returns The landing page with information for non-authenticated users
+ */
 export default function Home() {
   const { userId, isLoaded } = useAuth();
   const router = useRouter();
@@ -95,7 +108,7 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-2">Create Your Note</h3>
               <p className="text-muted-foreground">
                 Write a personal note with instructions, messages, or anything you want to share
-                with your loved ones when you're no longer here.
+                with your loved ones when you&apos;re no longer here.
               </p>
             </div>
 
@@ -107,7 +120,7 @@ export default function Home() {
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Secure & Private</h3>
+              <h3 className="text-xl font-semibold mb-2">Secure &amp; Private</h3>
               <p className="text-muted-foreground">
                 Your note remains completely private and encrypted. Only you can access it until
                 the verification period lapses.
@@ -124,7 +137,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Proof of Life</h3>
               <p className="text-muted-foreground">
-                Respond to periodic verification emails to confirm you're still here. If you don't
+                Respond to periodic verification emails to confirm you&apos;re still here. If you don&apos;t
                 respond, your note will be shared with your designated recipients.
               </p>
             </div>

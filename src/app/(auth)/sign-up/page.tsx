@@ -1,9 +1,22 @@
+/**
+ * SignUpPage Component
+ * 
+ * The registration page for the application using Clerk Authentication.
+ * Provides options for email sign-up and social login.
+ * 
+ * @module app/(auth)/sign-up
+ */
+
 import { SignUp } from "@clerk/nextjs";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 
+/**
+ * SignUpPage Component
+ * 
+ * @returns The sign-up page with Clerk auth UI and GitHub registration option
+ */
 export default function SignUpPage() {
   return (
     <div className="container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -27,7 +40,7 @@ export default function SignUpPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "This app helped me prepare thoughtful messages for my loved ones, giving me peace of mind that they'll receive them when it matters most."
+              &quot;This app helped me prepare thoughtful messages for my loved ones, giving me peace of mind that they&apos;ll receive them when it matters most.&quot;
             </p>
             <footer className="text-sm">Michael Wilson</footer>
           </blockquote>

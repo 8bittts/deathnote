@@ -1,16 +1,18 @@
+/**
+ * AppSidebar Component
+ * 
+ * A responsive sidebar navigation component that provides the main navigation
+ * structure for authenticated users. Shows user information at the bottom.
+ * 
+ * @module components/app-sidebar
+ */
+
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Calendar, Edit, Home, Settings, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { useRouter, usePathname } from "next/navigation";
 
 import {
   Sidebar,
@@ -22,9 +24,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
+/**
+ * Navigation menu items configuration
+ */
 const menuItems = [
   {
     title: "Dashboard",
@@ -53,13 +57,15 @@ const menuItems = [
   },
 ];
 
+/**
+ * AppSidebar Component
+ * 
+ * @returns A vertical sidebar with navigation options and user information
+ */
 export function AppSidebar() {
   const { user } = useUser();
-  const router = useRouter();
-  const pathname = usePathname();
   const firstName = user?.firstName || "";
   const lastName = user?.lastName || "";
-  const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
   
   return (
     <Sidebar>

@@ -1,18 +1,35 @@
+/**
+ * RecentCheckins Component
+ * 
+ * Displays a list of the user's most recent proof-of-life verification check-ins,
+ * showing date, time, device, and location information.
+ * 
+ * @module components/recent-checkins
+ */
+
 "use client";
 
-import { CheckCheck, Clock, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from "@/components/ui/table";
 
+/**
+ * Check-in data interface
+ */
+interface Checkin {
+  date: string;
+  time: string;
+  device: string;
+  location: string;
+}
+
+/**
+ * RecentCheckins Component
+ * 
+ * @returns A list of recent user verification check-ins with status information
+ */
 export function RecentCheckins() {
-  const checkins = [
+  // Sample data - would be fetched from API in a real implementation
+  const checkins: Checkin[] = [
     {
       date: "2025-04-27",
       time: "09:15 AM",
