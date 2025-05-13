@@ -356,4 +356,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <p><strong>Death Note</strong> - Secure your digital legacy</p>
   <p>Created by <a href="https://github.com/8bittts">8bittts</a></p>
-</div> 
+</div>  
