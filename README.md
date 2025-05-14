@@ -32,6 +32,7 @@ Death Note is a secure digital legacy management platform that enables users to 
 - [Security](#-security)
 - [License](#-license)
 - [Recent Updates](#-recent-updates)
+- [DeepSeek AI Integration](#-deepseek-ai-integration)
 
 ## 🌟 Features
 
@@ -447,6 +448,40 @@ The editor system has been refactored to improve maintainability and user experi
 - **Template Selection**: Enhanced the template picker with better organization
 - **Mobile Responsiveness**: Improved the editor experience on smaller screens
 - **Advanced Editing Tools**: Added a toggle for advanced formatting options
+
+## 🤖 DeepSeek AI Integration
+
+Death Note includes integration with DeepSeek AI for generating personalized message templates and providing helpful responses to user queries.
+
+### Key Features
+
+- **AI-Generated Content**: Get high-quality, contextually appropriate content based on your queries
+- **Template Detection**: The system automatically detects if you're asking for a template and formats the response accordingly
+- **User Personalization**: All generated content automatically includes your name from your Clerk profile
+- **Fallback Templates**: Even without an API key, the system provides quality template content
+
+### Available Templates
+
+The system supports multiple template types, each tailored to specific aspects of your digital legacy:
+
+1. **Goodbye Note**: A heartfelt farewell message to loved ones
+2. **Medical Care**: Healthcare directives and medical information
+3. **Funeral Plans**: Instructions for memorial services and final arrangements
+4. **Digital Legacy**: Passwords and digital account management
+5. **Pet Care**: Instructions for the care of pets
+6. **Financial Affairs**: Banking, investments, and financial information
+7. **Social Media**: Instructions for handling online accounts
+8. **Personal Belongings**: Guidance for distributing physical possessions
+9. **Legal Affairs**: Will, trusts, and legal document information
+
+### Using the AI Prompt
+
+Simply type your question or request in the prompt box at the top of the editor. For example:
+- "Write a goodbye letter to my family"
+- "How should I document my financial information?"
+- "Create a template for my pet care instructions"
+
+The AI will generate appropriate content that you can then customize to fit your specific needs.
 
 ---
 
