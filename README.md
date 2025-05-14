@@ -26,10 +26,12 @@ Death Note is a secure digital legacy management platform that enables users to 
 - [Environment Variables](#-environment-variables)
 - [Authentication](#-authentication)
 - [Components](#-components)
+- [Editor Architecture](#-editor-architecture)
 - [API Endpoints](#-api-endpoints)
 - [Contributing](#-contributing)
 - [Security](#-security)
 - [License](#-license)
+- [Recent Updates](#-recent-updates)
 
 ## 🌟 Features
 
@@ -179,7 +181,9 @@ sequenceDiagram
   /components              # Reusable components
     /ui                    # UI components (Shadcn)
     /icons                 # SVG icons and logos
+    /editor                # Editor components
   /lib                     # Utility functions
+    /editor                # Editor-specific utilities
   /hooks                   # Custom React hooks
   /types                   # TypeScript type definitions
   /styles                  # Global styles and themes
@@ -269,11 +273,80 @@ The application uses a combination of custom components and Shadcn UI components
 
 | Component | Description | Location |
 |-----------|-------------|----------|
-| `TiptapEditor` | Rich text editor for message creation | `src/components/tiptap-editor.tsx` |
+| `NoteEditor` | Rich text editor wrapper with auto-save | `src/components/editor/note-editor.tsx` |
+| `EnhancedTiptapEditor` | Underlying TipTap editor implementation | `src/components/enhanced-tiptap-editor.tsx` |
 | `DeathNoteLogo` | Application logo with animation | `src/components/icons/death-note-logo.tsx` |
 | `AppHeader` | Main navigation header | `src/components/app-header.tsx` |
 | `ThemeToggle` | Theme switcher component | `src/components/theme-toggle.tsx` |
 | `VerificationHistory` | History of check-ins | `src/components/verification-history.tsx` |
+| `TemplateCombobox` | Template selector for the editor | `src/components/template-combobox.tsx` |
+
+## 📝 Editor Architecture
+
+The editor system in Death Note is built with a modular architecture that separates concerns:
+
+### Editor Component Hierarchy
+
+```
+┌─────────────────────┐
+│                     │
+│    NoteEditor       │ Wrapper with auto-save and status indicators
+│                     │
+└─────────────────────┘
+          │
+          ▼
+┌─────────────────────┐
+│                     │
+│ EnhancedTiptapEditor │ Formatting toolbar and content editing
+│                     │
+└─────────────────────┘
+          │
+          ▼
+┌─────────────────────┐
+│                     │
+│   TipTap Core       │ Low-level editor engine
+│                     │
+└─────────────────────┘
+```
+
+### Editor Features
+
+- **Rich Text Formatting**: Headings, lists, text alignment, links, and more
+- **Template System**: Choose from predefined templates for common use cases
+- **Markdown Support**: Write using Markdown syntax for faster formatting
+- **Auto-Save**: Content is automatically saved as you type
+- **Status Indicators**: Clear visual feedback about the save status with color-coded badges
+- **AI-Powered Assistance**: Generate content using the integrated AI service
+
+### Editor Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant NE as NoteEditor
+    participant TTE as EnhancedTiptapEditor
+    participant AI as AI Service
+    participant TB as Template Library
+    participant DB as Dashboard State
+
+    U->>NE: Edit content
+    NE->>TTE: Content update
+    TTE->>NE: HTML content
+    NE->>NE: Debounced auto-save
+    NE->>DB: Update saved content
+    
+    U->>NE: Select template
+    NE->>TB: Request template
+    TB->>NE: Template content
+    NE->>TTE: Update content
+    TTE->>NE: Display template
+    
+    U->>NE: Use AI prompt
+    NE->>AI: Send prompt
+    AI->>NE: Generated content
+    NE->>TTE: Update content
+    TTE->>NE: Display AI content
+```
 
 ## 📡 API Endpoints
 
@@ -353,6 +426,27 @@ Death Note takes security seriously:
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔄 Recent Updates
+
+### Editor System Refactoring (May 2025)
+
+The editor system has been refactored to improve maintainability and user experience:
+
+- **Component Architecture**: Introduced a dedicated `NoteEditor` component that wraps the TipTap editor
+- **Auto-save Functionality**: Added seamless background saving with visual indicators
+- **Status Badges**: Added color-coded badges to show the current save status (saving/saved/error)
+- **Centralized Templates**: Moved templates to a central library for better organization
+- **Enhanced Documentation**: Added comprehensive JSDoc comments for all editor components
+- **Type Safety**: Improved TypeScript interfaces and declarations for better type checking
+- **Performance Optimization**: Reduced unnecessary re-renders with proper state management
+
+### UI Improvements (May 2025)
+
+- **Simplified Interface**: Streamlined the editing experience with a cleaner UI
+- **Template Selection**: Enhanced the template picker with better organization
+- **Mobile Responsiveness**: Improved the editor experience on smaller screens
+- **Advanced Editing Tools**: Added a toggle for advanced formatting options
 
 ---
 

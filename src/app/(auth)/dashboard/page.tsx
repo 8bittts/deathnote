@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useUser, useClerk } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -15,6 +15,7 @@ import {
   Mail,
   RefreshCw,
   InfoIcon,
+  AlertCircle
 } from "lucide-react";
 import { Overview } from "@/components/overview";
 import { RecentCheckins } from "@/components/recent-checkins";
@@ -27,7 +28,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import DeathNoteLogo from "@/components/icons/death-note-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { toast } from "sonner";
-import { TiptapEditor } from "@/components/tiptap-editor";
+import { NoteEditor } from "@/components/editor";
 
 // Contact interface
 interface Contact {
@@ -111,8 +112,7 @@ export default function DashboardPage() {
   });
 
   // Editor state
-  const [noteContent, setNoteContent] = useState('<h2>My Final Note</h2><p>Dear family and friends,</p><p>If you\'re reading this, it means I\'m no longer with you. I wanted to take this opportunity to share some final thoughts and wishes.</p><p>First and foremost, thank you for being part of my life journey. Each of you has contributed to making my life meaningful and full of joy.</p><p>Please remember me not with sadness, but with the happy memories we\'ve shared together.</p><p>With love and gratitude,</p><p>' + firstName + ' ' + lastName + '</p>');
-  const [isSavingNote, setIsSavingNote] = useState(false);
+  const [noteContent, setNoteContent] = useState('<h1>Goodbye Note</h1><p>Dear family and friends,</p><p>&nbsp;</p><p>If you\'re reading this, it means I\'m no longer with you. I wanted to take this opportunity to share some final thoughts and wishes.</p><p>First and foremost, thank you for being part of my life journey. Each of you has contributed to making my life meaningful and full of joy.</p><p>Please remember me not with sadness, but with the happy memories we\'ve shared together. Celebrate the life we shared, the laughter we enjoyed, and the love that connected us.</p><p>Know that you made my life better simply by being in it. I am grateful for every moment we shared.</p><p>&nbsp;</p><p>All my love,</p><p>Eight Lee</p><p>❤️</p>');
 
   // History state
   const [verificationHistory, setVerificationHistory] = useState<VerificationRecord[]>([]);
@@ -258,21 +258,15 @@ export default function DashboardPage() {
   };
 
   // Save note content
-  const saveNote = async (isDraft = false) => {
-    try {
-      setIsSavingNote(true);
-      
-      // In a real app, this would call your API to save the note
-      // For now, we'll simulate a delay and success
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success(isDraft ? "Draft saved successfully" : "Note updated successfully");
-    } catch (error) {
-      console.error("Error saving note:", error);
-      toast.error("Failed to save note. Please try again.");
-    } finally {
-      setIsSavingNote(false);
-    }
+  const handleSaveNote = async (content: string): Promise<void> => {
+    // In a real app, this would call your API to save the note
+    // For now, we'll simulate a delay and success
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Update content state
+    setNoteContent(content);
+    
+    // You can add additional handling here if needed
   };
 
   if (!isLoaded) {
@@ -699,34 +693,11 @@ export default function DashboardPage() {
         </TabsContent>
         
         <TabsContent value="editor">
-          <Card>
-            <CardHeader>
-              <CardTitle>Note Editor</CardTitle>
-              <CardDescription>Write your legacy note that will be sent to your contacts</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <TiptapEditor 
-                initialContent={noteContent}
-                onChange={setNoteContent}
-                className="min-h-[400px]"
-              />
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button 
-                variant="outline" 
-                onClick={() => saveNote(true)}
-                disabled={isSavingNote}
-              >
-                {isSavingNote ? "Saving..." : "Save Draft"}
-              </Button>
-              <Button 
-                onClick={() => saveNote(false)}
-                disabled={isSavingNote}
-              >
-                {isSavingNote ? "Updating..." : "Update Note"}
-              </Button>
-            </CardFooter>
-          </Card>
+          <NoteEditor 
+            initialContent={noteContent}
+            onContentChange={setNoteContent}
+            onSave={handleSaveNote}
+          />
         </TabsContent>
         
         <TabsContent value="history">
